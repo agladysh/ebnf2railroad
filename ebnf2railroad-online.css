@@ -1,0 +1,158 @@
+html, body { height: 100%; padding: 0; margin: 0; }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1280px) {
+  .split header {
+    padding: 0.5rem 1rem;
+    display: flex;
+  }
+  .split header h1 {
+    margin: 0 auto 0 0;
+    display: flex;
+    align-items: center;
+  }
+  .split header button {
+    display: initial;
+    position: relative;
+    z-index: 10;
+  }
+  .split header button::after {
+    content: '\2630';
+    margin-left: auto;
+    font-size: 1.5rem;
+  }
+  .split main {
+    display: block;
+    position: relative;
+    margin-left: 0;
+  }
+  .split nav {
+    height: auto;
+    display: block;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 3rem;
+    background: white;
+    box-shadow: 0 0 0 1000000rem rgba(0, 0, 0, 0.35);
+  }
+  .menu-open .split nav {
+    pointer-events: auto;
+    opacity: 1;
+  }
+  .split nav a {
+    padding: 0.66rem 0;
+  }
+  .split article {
+    margin-left: 0;
+    border-left: 0;
+    padding: 1rem;
+  }
+}
+
+
+#header {
+  flex: 1rem 0 0;
+  padding: 0 1em;
+}
+
+a.collapse {
+  text-decoration: none;
+  display: inline-block;
+  padding-right: 1rem;
+}
+
+.greyed {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+#header h1 {
+  font-size: 1rem;
+}
+
+#main {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+}
+
+body a.collapse {
+  color: transparent;
+  position: relative;
+  width: 3rem;
+  font-size: 1.5rem;
+}
+body a.collapse::before {
+  transition: left 0.5s;
+  content: '\1F4DD';
+  color: black;
+  position: absolute;
+  top: 0.2rem;
+  left: 0.5rem;
+}
+body a.collapse::after {
+  transition: left 0.5s;
+  content: '\1F4D4';
+  color: black;
+  position: absolute;
+  top: 0.2rem;
+  left: 0.8rem;
+}
+
+body.split a.collapse::before {
+  left: 0rem;
+}
+body.split a.collapse::after {
+  left: 1.5rem;
+}
+
+body.expanded a.collapse::before {
+  left: 0.5rem;
+  z-index: 1;
+}
+body.expanded a.collapse::after {
+  left: 0.8rem;
+}
+
+a.collapse {
+  -webkit-transform-origin: 30%;
+          transform-origin: 30%;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+}
+
+body.split #editor-pane,
+body.expanded #editor-pane {
+  flex-grow: 1;
+}
+body.expanded #result {
+  flex-grow: 0.00001;
+}
+
+#editor-pane {
+  flex: 0.00001 1 0;
+  display: flex;
+  flex-direction: column;
+}
+#editor-pane.loaded {
+  transition: flex .5s;
+}
+
+#editor {
+  flex: 1 1 0;
+}
+
+#result {
+  flex: 1 1 0;
+  transition: flex .5s;
+  overflow-y: scroll;
+}
+
